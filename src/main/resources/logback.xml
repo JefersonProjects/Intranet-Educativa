@@ -1,0 +1,31 @@
+<configuration>
+    <!-- Appender para archivo de logs -->
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/eventos.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>logs/eventos-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory> <!-- Guardar logs de los últimos 30 días -->
+        </rollingPolicy>
+        <encoder>
+            <charset>UTF-8</charset>  <!-- Para evitar problemas de codificación -->
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Appender para la consola -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Definir niveles de log para el sistema -->
+    <root level="INFO">
+        <appender-ref ref="FILE" />
+        <appender-ref ref="STDOUT" />
+    </root>
+
+    <!-- Logs detallados para AlumnoService (nivel DEBUG) -->
+    <logger name="utp.edu.pe.Integrador_Backend.Service.AlumnoService" level="DEBUG" />
+</configuration>
